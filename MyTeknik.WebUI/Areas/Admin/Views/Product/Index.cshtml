@@ -1,0 +1,71 @@
+﻿@model IEnumerable<MyTeknik.Model.Entities.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="ltr:flex flex-1 rtl:flex-row-reverse">
+    <div class="page-wrapper relative ltr:ml-auto rtl:mr-auto rtl:ml-0 w-[calc(100%-260px)] px-4 pt-[64px] duration-300">
+
+            @if (Model.Count() == 0)
+        {
+            <div class="alert alert-danger">
+                Kayıt Bulunamadı..!
+            </div>
+        }
+
+        else
+        {
+                <table class="w-full border-collapse border dark:border-slate-700">
+                <thead class="bg-slate-100 dark:bg-slate-700/20">
+                    <a class="btn btn-success" asp-area="Admin" asp-controller="Product" asp-action="Add">Yeni Ürün Ekle</a>
+                    <tr>
+                        <th scope="col" class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400 border dark:border-slate-700">
+                            Ürün ID
+                        </th>
+                        <th scope="col" class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400  border dark:border-slate-700">
+                            Ürün Adı
+                        </th>
+                        <th scope="col" class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400  border dark:border-slate-700">
+                            Ürün Kodu
+                        </th>
+                        <th scope="col" class="p-3 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400  border dark:border-slate-700">
+                            Ürün Fiyatı
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 1 -->
+                    <tr class="bg-white border-b border-dashed dark:bg-gray-900 dark:border-gray-700/40">
+                        <td class="p-3 text-sm font-medium whitespace-nowrap dark:text-white  border dark:border-slate-700">
+                            <a href="" class="text-blue-500">Organic search</a>
+                        </td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400  border dark:border-slate-700">
+                            10853<small class="text-gray-400">(52%)</small>
+                        </td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400  border dark:border-slate-700">
+                            566<small class="text-gray-400">(92%)</small>
+                        </td>
+                        <td class="p-3 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400  border dark:border-slate-700">
+                            52.80% <i class="icofont-caret-up text-green-500 text-base"></i>
+                        </td>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="col">@item.ID</th>
+                            <th scope="col">@item.ProductName</th>
+                            <th scope="col">@item.Code</th>
+                            <th scope="col">@item.Price</th>
+                            <th scope="col"><a asp-area="Admin" asp-controller="Product" asp-action="Update" asp-route-id="@item.ID" class="btn btn-warning">Güncelle</a></th>
+                            <th scope="col"><a asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Sil</a></th>
+                            <th scope="col"><a asp-area="Admin" asp-controller="Product" asp-action="Delete" asp-route-id="@item.ID" class="btn btn-success">Detay</a></th>
+                        </tr>
+                    }
+                </tbody>
+              </table>
+        }
+
+    </div>
+</div>

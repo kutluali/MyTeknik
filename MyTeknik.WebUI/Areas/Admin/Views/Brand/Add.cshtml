@@ -1,0 +1,37 @@
+﻿@model MyTeknik.Model.Entities.Brand
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="ltr:flex flex-1 rtl:flex-row-reverse">
+    <div class="page-wrapper relative ltr:ml-auto rtl:mr-auto rtl:ml-0 w-[calc(100%-260px)] px-4 pt-[64px] duration-300">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <br />
+
+                    <h5>Yeni Kategori Ekle</h5> <br />
+
+                    @if (ViewBag.BrandAddError != null)
+                    {
+                        <div class="alert alert-danger">
+                            @ViewBag.BrandAddError
+                        </div>
+                    }
+
+                    <div class="mb-2">
+                        <form asp-area="Admin" asp-controller="Brand" asp-action="Add" method="post">
+
+                            <label for="base-input" class="font-medium text-sm text-slate-600 dark:text-slate-400">Marka Adını Giriniz</label>
+                            <input type="text" id="base-input" class="form-input w-full rounded-md mt-1 border border-slate-300/60 dark:border-slate-700 dark:text-slate-300 bg-transparent px-3 py-1 focus:outline-none focus:ring-0 placeholder:text-slate-400/70 placeholder:font-normal placeholder:text-sm hover:border-slate-400 focus:border-primary-500 dark:focus:border-primary-500  dark:hover:border-slate-700" name="BrandName" /> <br /><br />
+                            <input type="submit" value="Kaydet" class="btn btn-success" />
+                        </form>
+
+                    </div>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+        </div>
+    </div>
+</div>
